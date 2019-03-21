@@ -40,8 +40,5 @@ for i in range(12):
     plt.scatter(X_test[:, i], y_test, color='blue', linewidth=1)
     plt.xlabel(boston.feature_names[i])
     plt.ylabel('Price')
-
-    x = np.linspace(np.min(X_test[:, i]), np.max(X_test[:, i]), 2)
-    y = regr.intercept_ + regr.coef_[i] * X_test[:, i]
     plt.plot(X_test[:, i], regr.intercept_ + regr.coef_[i] * X_test[:, i], color='red', linewidth=1)
 plt.show()
