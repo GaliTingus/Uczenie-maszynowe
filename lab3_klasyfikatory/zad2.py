@@ -10,10 +10,9 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 
-
 iris = datasets.load_iris()
- 
-#Podziel zbiór na uczący i testowy, test_size - procentowy udział (przykład 50 % uczący i testowy)
+
+# Podziel zbiór na uczący i testowy, test_size - procentowy udział (przykład 50 % uczący i testowy)
 features_train, features_test, labels_train, labels_test = train_test_split(iris.data, iris.target, test_size=0.5)
 
 neigh = KNeighborsClassifier(n_neighbors=5)
