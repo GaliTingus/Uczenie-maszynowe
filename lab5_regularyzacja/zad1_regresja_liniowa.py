@@ -88,7 +88,6 @@ plt.title("Blad testowy Ridge")
 plt.xlabel('alpha')
 plt.ylabel('dokładność')
 
-
 ########## LESSO ##############
 reg_Lasso = Pipeline([('poly', PolynomialFeatures(degree=2)),
                       ('model', linear_model.Lasso(alpha=0.1))])
