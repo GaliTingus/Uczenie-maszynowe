@@ -17,7 +17,7 @@ def get_vocabulary_dict() -> Dict[int, str]:
             tmp[int(row[0])] = row[1]
     return tmp
     # print(tmp)
-    # FIXME: Parse data from the 'data/vocab.txt' file.
+    # Parse data from the 'data/vocab.txt' file.
     # - The file is saved in tab-separated values (TSV) format.
     # - Each line contains a word's ID and the word itself.
     # The output dictionary should map word's ID on the word itself, e.g.:

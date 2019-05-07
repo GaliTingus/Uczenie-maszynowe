@@ -53,6 +53,9 @@ def email_features(word_indices: List[int]) -> np.ndarray:
     #
     # =========================================================================
 
-    raise NotImplementedError()
-
+    # raise NotImplementedError()
+    x = np.zeros(n_words)
+    for word_ind in word_indices:
+        x[word_ind-1] = 1
+    return x.reshape(1, -1)
     # =========================== END OF YOUR CODE ============================

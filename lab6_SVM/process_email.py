@@ -18,10 +18,10 @@ def process_email(email_contents: str) -> List[int]:
 
     # FIXME: Load the vocabulary.
     vocabulary_dict = get_vocabulary_dict()
-    print(vocabulary_dict)
+    # print(vocabulary_dict)
 
     # FIXME: Initialize the return value.
-    word_indices = None
+    word_indices = list()
 
     # ========================== Preprocess Email ===========================
 
@@ -43,19 +43,19 @@ def process_email(email_contents: str) -> List[int]:
 
     # FIXME: Handle numbers.
     # Convert all sequences of digits (0-9) to a 'number' token.
-    email_contents = re.sub('FIXME', 'number', email_contents)
+    email_contents = re.sub('[0-9]+', 'number', email_contents)
 
     # FIXME: Handle URLs.
     # Convert all strings starting with http:// or https:// to a 'httpaddr' token.
-    email_contents = re.sub('FIXME', 'httpaddr', email_contents)
+    email_contents = re.sub('(http://*|https://*)', 'httpaddr', email_contents)
 
     # FIXME: Handle email addresses.
     # Convert all strings with @ in the middle to a 'emailaddr' token.
-    email_contents = re.sub('FIXME', 'emailaddr', email_contents)
+    email_contents = re.sub('[*@*]', 'emailaddr', email_contents)
 
     # FIXME: Handle $ sign
     # Convert all sequences of $ signs to a 'dollar' token.
-    email_contents = re.sub('FIXME', 'dollar', email_contents)
+    email_contents = re.sub('[$]', 'dollar', email_contents)
 
     # ========================== Tokenize Email ===========================
 
@@ -73,7 +73,7 @@ def process_email(email_contents: str) -> List[int]:
         # Remove any non alphanumeric characters
         token = re.sub('[^a-zA-Z0-9]', '', token)
 
-        # Stem the word 
+        # Stem the word
         token = PorterStemmer().stem(token.strip())
 
         # Skip the word if it is too short
@@ -92,16 +92,19 @@ def process_email(email_contents: str) -> List[int]:
         #               vector. Concretely, if str = 'action', then you should
         #               look up the vocabulary list to find where in vocabulary_dict
         #               'action' appears. For example, if vocabulary_dict{18} =
-        #               'action', then, you should add 18 to the word_indices 
+        #               'action', then, you should add 18 to the word_indices
         #               vector (e.g., word_indices = [word_indices ; 18]; ).
-        # 
+        #
         # Note: vocabulary_dict{idx} returns a the word with index idx in the
         #       vocabulary list.
-        # 
+        #
         # Note: You can use strcmp(str1, str2) to compare two strings (str1 and
         #       str2). It will return 1 only if the two strings are equivalent.
         #
-
+        for ind, word in vocabulary_dict.items():
+            if word == token:
+                # if ind not in word_indices:
+                word_indices.append(ind)
 
 
         # ========================= END OF YOUR CODE ==========================
@@ -117,4 +120,4 @@ def process_email(email_contents: str) -> List[int]:
     print('\n\n=========================\n')
 
     return word_indices
-process_email("aaa")
+# process_email("aaa")
